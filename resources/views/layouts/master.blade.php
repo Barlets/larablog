@@ -39,13 +39,14 @@
             </div>
         </div>
     </div>
-@include('partials.nav')
+@include('layouts.nav')
 </header>
+
 <div class="container">
 @yield('content')
 </div>
-@include('partials.footer')
 
+@include('layouts.footer')
 
 </body>
 </html>
