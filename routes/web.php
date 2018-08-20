@@ -23,16 +23,19 @@ Route::get('/about', function () {
     return view('about', ['name' => $name])->with('name', 'World');
 });
 
-Route::get('/tasks', function () {
-    $tasks = DB::table('tasks')->get();
-    $tasks = Task::incompleted()->get();
-    $tasks = Task::incomplete();
-    //    app('events')->fire();
-    return view('tasks.index', compact('tasks'));
-});
+//Route::get('/tasks', function () {
+//    $tasks = DB::table('tasks')->get();
+//    $tasks = Task::incompleted()->get();
+//    $tasks = Task::incomplete();
+//    //    app('events')->fire();
+//    return view('tasks.index', compact('tasks'));
+//});
+//
+//Route::get('/tasks/{task}', function ($id) {
+////    $task = DB::table('tasks')->find($id);
+//    $task = Task::find($id);
+//    return view('tasks.show', compact('task'));
+//});
 
-Route::get('/tasks/{task}', function ($id) {
-//    $task = DB::table('tasks')->find($id);
-    $task = Task::find($id);
-    return view('tasks.show', compact('task'));
-});
+Route::get('/tasks', 'TasksController@index');
+Route::get('/tasks/{task}', 'TasksController@show');
