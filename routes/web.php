@@ -11,11 +11,11 @@
 |
 */
 
+use App\Task;
 use Illuminate\Support\Facades\DB;
 
 Route::get('/', function () {
-    $tasks = DB::table('tasks')->latest()->get();
-    return view('welcome', compact('tasks'));
+    return view('welcome');
 });
 
 Route::get('/about', function () {
@@ -25,10 +25,14 @@ Route::get('/about', function () {
 
 Route::get('/tasks', function () {
     $tasks = DB::table('tasks')->get();
+    $tasks = Task::incompleted()->get();
+    $tasks = Task::incomplete();
+    //    app('events')->fire();
     return view('tasks.index', compact('tasks'));
 });
 
 Route::get('/tasks/{task}', function ($id) {
-    $task = DB::table('tasks')->find($id);
+//    $task = DB::table('tasks')->find($id);
+    $task = Task::find($id);
     return view('tasks.show', compact('task'));
 });
