@@ -14,14 +14,14 @@
 use App\Task;
 use Illuminate\Support\Facades\DB;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/about', function () {
-    $name = 'SomeName';
-    return view('about', ['name' => $name])->with('name', 'World');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+//
+//Route::get('/about', function () {
+//    $name = 'SomeName';
+//    return view('about', ['name' => $name])->with('name', 'World');
+//});
 
 //Route::get('/tasks', function () {
 //    $tasks = DB::table('tasks')->get();
@@ -36,6 +36,8 @@ Route::get('/about', function () {
 //    $task = Task::find($id);
 //    return view('tasks.show', compact('task'));
 //});
+Route::get('/', 'PostsController@index');
+Route::get('/posts/{post}', 'PostsController@show');
 
 Route::get('/tasks', 'TasksController@index');
 Route::get('/tasks/{task}', 'TasksController@show');
