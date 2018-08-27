@@ -8,7 +8,7 @@ class BlogController extends Controller
 {
     public function index()
     {
-        return view('blog.blog');
+        return view('blog.index');
     }
 
 }
