@@ -8,12 +8,13 @@ class PostsController extends Controller
 {
     public function index()
     {
-        return view('posts.index');
+        $posts = Post::latest()->get();
+        return view('blog.index', compact('posts'));
     }
 
-    public function show(/*Post $post*/)
+    public function show(Post $post)
     {
-        return view('posts.show'/*, compact($post)*/);
+        return view('posts.show', compact('post'));
     }
 
     public function create()
