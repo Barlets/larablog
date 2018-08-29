@@ -23,7 +23,7 @@
             </div>
         </form>
 
-@include('blog.layouts.errors')
+        @include('blog.layouts.errors')
 
     </div>
 @endsection
