@@ -2,7 +2,8 @@
 
 namespace App;
 
-use Carbon\Carbon;
+
+use App\Traits\PostScopes;
 
 /**
  * App\Post
@@ -21,6 +22,8 @@ use Carbon\Carbon;
  */
 class Post extends Model
 {
+    use PostScopes;
+
     public function comments()
     {
         return $this->hasMany(Comment::class);
@@ -41,19 +44,5 @@ class Post extends Model
 //        ]);
     }
 
-    /**
-     * @param \Eloquent $query
-     * @param array $filters
-     */
-    public function scopeFilter($query, $filters)
-    {
-        if ($month = $filters['month']) {
-            $query->whereMonth('created_at', Carbon::parse($month)->month);
-        }
-
-        if ($year = $filters['year']) {
-            $query->whereYear('created_at', $year);
-        }
-    }
 
 }
