@@ -14,7 +14,13 @@
                     <line x1="21" y1="21" x2="15.8" y2="15.8"></line>
                 </svg>
             </a>
-            <a class="btn btn-sm btn-outline-secondary" href="#">Sign up</a>
+
+            @if (! Auth::check())
+                <a class="btn btn-sm btn-outline-secondary" href="/login">Sign up</a>
+            @else
+                <a class="btn btn-sm btn-outline-secondary" href="/logout">Logout</a>
+            @endif
+
         </div>
     </div>
 </header>

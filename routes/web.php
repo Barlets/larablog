@@ -55,5 +55,6 @@ Route::get('/tasks/{task}', 'TasksController@show');
 Route::get('/register', 'RegistrationController@create');
 Route::post('/register', 'RegistrationController@store');
 
+Route::post('/login', 'SessionsController@store');
 Route::get('/login', 'SessionsController@create');
 Route::get('/logout', 'SessionsController@destroy');

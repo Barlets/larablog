@@ -3,9 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\User;
 
 class PostsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+    }
+
     public function index()
     {
         $posts = Post::latest()->get();
@@ -35,12 +41,15 @@ class PostsController extends Controller
 //            'title' => request('title'),
 //            'body' => request('body')
 //        ]);
+
         $this->validate(request(), [
-            'title' => 'required|max:10',
+            'title' => 'required|min:5',
             'body' => 'required',
         ]);
 
-        Post::create(request(['title', 'body']));
+        auth()->user()->publish(
+            new Post(request(['title', 'body']))
+        );
 
         return redirect('/');
     }
