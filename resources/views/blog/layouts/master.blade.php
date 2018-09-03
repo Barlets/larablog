@@ -26,7 +26,13 @@
 
     @include('blog.layouts.nav')
 
-{{--    @include('blog.layouts.recent')--}}
+    @if ($flash = session('message'))
+        <div id="flash-message" class="alert alert-success" role="alert">
+            {{ $flash }}
+        </div>
+    @endif
+
+    {{--    @include('blog.layouts.recent')--}}
 
 </div>
 <main role="main" class="container">
