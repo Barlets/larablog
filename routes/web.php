@@ -37,11 +37,10 @@
 //Route::get('/', 'BlogController@index');
 
 
-
 //$stripe = App::make('App\Billing\Stripe');
-$stripe = resolve('App\Billing\Stripe');
-
-dd($stripe);
+//$stripe = resolve('App\Billing\Stripe');
+//
+//dd($stripe);
 
 Route::get('/', 'PostsController@index')->name('home');
 Route::get('/posts/create', 'PostsController@create');
