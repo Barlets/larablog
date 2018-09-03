@@ -2,10 +2,13 @@
 
 namespace App\Providers;
 
+use App\Billing\Stripe;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
+    protected $defer = true;
+
     /**
      * Bootstrap any application services.
      *
@@ -25,6 +28,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton(Stripe::class, function ($app) {
+            return new Stripe(config('services.stripe.secret'));
+        });
     }
 }
